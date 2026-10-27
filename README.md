@@ -1,57 +1,49 @@
-# CIVITAS — Empires
+# CIVITAS — Realms
 
-A self-contained browser strategy game built with Three.js. It uses a procedural low-poly 3D hex world and custom mesh-built cities and units, so you do not need to download a separate models folder.
+A browser-based civilization sandbox. Start with a Keep, villagers and a scout, then turn a small frontier into a kingdom. The game is written as a single self-contained `index.html`; single-player does not require an external game engine or server.
 
-## Features
+## Core gameplay
 
-- Turn-based civilization gameplay on a generated hex map
-- Four empires per match, with AI rivals
-- Found cities, grow populations, train units, improve tiles, and discover technologies
-- Fog of war, exploration, rival-unit combat, and capital capture
-- Domination, scientific, and influence victory conditions
-- Online friend matches through PeerJS/WebRTC; share a link from the host's Invite button
-- Settings for liquid-glass UI, graphics preset, interface scale, camera sensitivity, map size, AI difficulty, victory rules, editable keybindings, map labels/yields, reduced motion, sound effects, and autosave
-- Local browser save/load
-- Responsive HUD for desktop and mobile
+- Build farms, lumber camps, quarries, iron mines, homesteads, markets, barracks, academies, watchtowers, walls and storehouses.
+- Earn food, wood, stone, iron, gold and science from your buildings each season.
+- Select a villager, choose **Gather resource**, then click a wood, stone, iron or food deposit. Villagers walk to it and gather until the deposit runs out.
+- Research crop rotation, stone masonry, trade routes, scholarship, iron smelting and steel arms.
+- Recruit guards, archers, scouts, cavalry and siege carts from your barracks.
+- Command troops to move or attack rival units and structures. Rival AI realms build their own economies, recruit troops and launch attacks.
+- Capture every rival Keep to unite the frontier. Defend your own Keep, upgrade and repair structures, and complete milestones.
+- Save/load locally, pause the simulation, and adjust the game speed.
 
 ## Run locally
 
-The easiest option is to open `index.html` in a browser with an internet connection. Since the Three.js modules are loaded from a CDN, some browser features may work better when served over HTTP. If you have Python installed, open a terminal in this folder and run:
+Double-click `index.html` to play single-player in a modern browser. No build step, installation or local server is required. The world is drawn with a custom isometric canvas, and buildings, units and terrain are drawn directly by the game.
 
-```bash
-python -m http.server 8000
-```
+## Publish using GitHub Pages
 
-Then open `http://localhost:8000`.
+1. Create a GitHub repository.
+2. Upload `index.html` and `README.md` directly into the repository root.
+3. Open **Settings → Pages**.
+4. Under the deployment source, choose **Deploy from a branch**, select `main` and `/(root)`, then save.
+5. Open the published URL from GitHub Pages.
 
-## Publish with GitHub Pages
+## Multiplayer
 
-1. Create a new GitHub repository.
-2. Upload `index.html` and `README.md` to the repository root (not inside an extra nested folder).
-3. Open **Settings → Pages** in the repository.
-4. Under the build/deployment source, select **Deploy from a branch**, choose the `main` branch and `/ (root)`, then save.
-5. Wait for GitHub Pages to publish the site, then open the URL GitHub provides.
-6. To play with friends, open the published site, choose **Create an online game**, click **Invite**, and copy the link. Share it with your friends. They should open that link while the host keeps the game page open.
-
-## Multiplayer notes
-
-The game is statically hosted by GitHub Pages; multiplayer signalling uses PeerJS's public cloud service and gameplay state is sent directly between browsers using WebRTC data connections. No separate game server is included. Some school, workplace, or restricted networks may block the signalling service or peer-to-peer connections. Friends should use the same current published link, and the host must remain online for that session.
+From the menu, choose **Host a world for friends**. When the world opens, click **Invite**, copy the link and send it to your friends. A joiner can also use **Join a friend's world** and paste the full link or room ID. The host must keep their game open during the match. The optional PeerJS browser library is loaded only when you try to host or join, so it cannot block single-player startup. An internet connection is required for multiplayer, and some school/work networks may block peer connections.
 
 ## Controls
 
-- Click a unit, then click an adjacent land hex to move.
-- Move adjacent to an enemy unit or rival city to attack.
-- Select a Settler and choose **Found a city** to settle open land.
-- Select a city to choose production.
-- `Space`: end turn
-- `N`: select the next unit with movement remaining
-- `1` / `2` / `3` / `4`: Empire / Research / Cities / Diplomacy
-- `Esc`: open or close settings
-- Drag to orbit, right-drag to pan, scroll or pinch to zoom
+- Click a tile to inspect it and see valid construction options.
+- Click one of your units to select it.
+- Villager: choose **Gather resource**, then click a deposit.
+- Military unit: choose **Attack target**, then click an enemy unit or building; or choose **Move unit**, then click land.
+- Drag empty terrain to pan; use the mouse wheel to zoom.
+- `Escape`: open/close settings. `Space`: pause/resume. `B`: build, `T`: tech, `A`: army.
 
-## Dependencies
+## Settings
 
-- Three.js 0.164.1 via jsDelivr CDN
-- PeerJS 1.5.4 via unpkg CDN
+Settings include Liquid Glass UI, graphics quality, UI scaling, unit/building labels, resource icons, tile outlines, reduced motion, map size, AI difficulty and count, starting resources, autosave, simulation speed, screen effects, sound toggle and volume.
 
-An internet connection is needed to load these libraries. The project does not bundle third-party library code.
+## Notes
+
+- Saves are stored in the current browser and device.
+- Single-player is fully local and does not need the PeerJS library.
+- Multiplayer uses PeerJS/WebRTC signalling and peer-to-peer state sharing; the host is the authority for the world simulation. Multiplayer needs a live internet connection and is subject to network restrictions.
