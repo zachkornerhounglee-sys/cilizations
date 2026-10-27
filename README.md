@@ -15,7 +15,7 @@ A browser-based civilization sandbox. Start with a Keep, villagers and a scout, 
 
 ## Run locally
 
-Double-click `index.html` to play single-player in a modern browser. No build step, installation or local server is required. The world is drawn with a custom isometric canvas, and buildings, units and terrain are drawn directly by the game.
+Double-click `index.html` to play single-player in a modern browser. No build step, installation or local server is required. The world is drawn with a custom isometric canvas, and buildings, units and terrain are drawn directly by the game. The welcome-menu actions use explicit click listeners and report an error if an action fails.
 
 ## Publish using GitHub Pages
 
@@ -41,6 +41,10 @@ From the menu, choose **Host a world for friends**. When the world opens, click 
 ## Settings
 
 Settings include Liquid Glass UI, graphics quality, UI scaling, unit/building labels, resource icons, tile outlines, reduced motion, map size, AI difficulty and count, starting resources, autosave, simulation speed, screen effects, sound toggle and volume.
+
+## Updating an existing GitHub Pages site
+
+Replace the existing root `index.html` with the one from this ZIP, commit the change, and hard-refresh the published page (`Ctrl+F5` on Windows). A previously published or cached version will not receive the fix until the new file is uploaded and Pages redeploys.
 
 ## Notes
 

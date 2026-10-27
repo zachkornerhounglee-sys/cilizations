@@ -23,7 +23,7 @@
 <div class="bottom-bar"><div class="bottom-emblem" id="bottomIcon">⌖</div><div class="bottom-info"><div class="bottom-title" id="bottomTitle">Your frontier awaits</div><div class="bottom-sub" id="bottomSub">Choose land to build your settlement</div></div><div class="bottom-actions"><button class="btn sm" onclick="selectNextUnit()">Next unit ↻</button><button class="btn primary" id="speedBtn" onclick="cycleSpeed()">Speed 1×</button></div></div>
 </div>
 <div class="event-toast" id="eventToast"></div><div class="toast-stack" id="toastStack"></div>
-<div class="screen" id="welcomeScreen"><div class="menu-card"><section class="menu-left"><div class="eyebrow">A living world, shaped by you</div><h1 class="hero-title">Build your<br><span>own realm.</span></h1><p class="hero-copy">Start with a humble keep. Raise farms, gather timber and stone, research new ideas, train an army, and defend your people as rival kingdoms grow around you.</p><div class="menu-actions"><button class="btn primary" onclick="startSolo()"><span class="act-main"><span class="act-icon">🌱</span><span class="act-text"><strong>Enter a new world</strong><small>Build, harvest, research and fight AI rivals</small></span></span><b>→</b></button><button class="btn" onclick="startOnlineHost()"><span class="act-main"><span class="act-icon">◎</span><span class="act-text"><strong>Host a world for friends</strong><small>Invite people through a shareable link</small></span></span><b>↗</b></button><button class="btn" onclick="showJoin()"><span class="act-main"><span class="act-icon">⇢</span><span class="act-text"><strong>Join a friend's world</strong><small>Paste their invite link or room ID</small></span></span><b>→</b></button></div><div class="menu-foot"><button class="text-btn" onclick="openSettings()">Settings</button><button class="text-btn" onclick="showLoad()">Load saved world</button><span class="muted tiny">No install · Designed for browser play</span></div></section><section class="menu-right"><div class="preview-label"><div class="overline">THE FRONTIER</div><h3>Every world tells a story</h3><p>From first harvest to the final siege.</p></div><div class="map-preview"><div class="preview-world"></div></div><div class="preview-stats"><strong>YOUR KINGDOM, YOUR CHOICES</strong><div class="feature-grid"><div class="feature">🌾 <span><b>Harvest</b> food and resources</span></div><div class="feature">🏰 <span><b>Build</b> a living settlement</span></div><div class="feature">⚒ <span><b>Research</b> stronger tools</span></div><div class="feature">⚔ <span><b>Wage</b> wars for the realm</span></div></div></div></section></div></div>
+<div class="screen" id="welcomeScreen"><div class="menu-card"><section class="menu-left"><div class="eyebrow">A living world, shaped by you</div><h1 class="hero-title">Build your<br><span>own realm.</span></h1><p class="hero-copy">Start with a humble keep. Raise farms, gather timber and stone, research new ideas, train an army, and defend your people as rival kingdoms grow around you.</p><div class="menu-actions"><button type="button" class="btn primary" data-menu-action="solo"><span class="act-main"><span class="act-icon">🌱</span><span class="act-text"><strong>Enter a new world</strong><small>Build, harvest, research and fight AI rivals</small></span></span><b>→</b></button><button type="button" class="btn" data-menu-action="host"><span class="act-main"><span class="act-icon">◎</span><span class="act-text"><strong>Host a world for friends</strong><small>Invite people through a shareable link</small></span></span><b>↗</b></button><button type="button" class="btn" data-menu-action="join"><span class="act-main"><span class="act-icon">⇢</span><span class="act-text"><strong>Join a friend's world</strong><small>Paste their invite link or room ID</small></span></span><b>→</b></button></div><div class="menu-foot"><button type="button" class="text-btn" data-menu-action="settings">Settings</button><button type="button" class="text-btn" data-menu-action="load">Load saved world</button><span class="muted tiny">No install · Designed for browser play</span></div></section><section class="menu-right"><div class="preview-label"><div class="overline">THE FRONTIER</div><h3>Every world tells a story</h3><p>From first harvest to the final siege.</p></div><div class="map-preview"><div class="preview-world"></div></div><div class="preview-stats"><strong>YOUR KINGDOM, YOUR CHOICES</strong><div class="feature-grid"><div class="feature">🌾 <span><b>Harvest</b> food and resources</span></div><div class="feature">🏰 <span><b>Build</b> a living settlement</span></div><div class="feature">⚒ <span><b>Research</b> stronger tools</span></div><div class="feature">⚔ <span><b>Wage</b> wars for the realm</span></div></div></div></section></div></div>
 <div class="screen hidden" id="joinScreen"><div class="modal-card"><div class="modal-head"><div><h2>Join a friend's world</h2><p>Paste the host's invite link or room ID. The host needs to keep their game open.</p></div><button class="icon-btn" onclick="closeScreen('joinScreen')">×</button></div><div class="modal-body"><div class="field"><label>Invite link or room ID</label><input id="joinInput" type="text" placeholder="https://…?join=civitas-… or civitas-…"></div><div class="field" style="margin-top:13px"><label>Your name</label><input id="joinName" type="text" maxlength="20" placeholder="Explorer" value="Explorer"></div><div class="callout" style="margin-top:14px">Online play uses browser-to-browser networking. School or workplace Wi-Fi may restrict it; if connecting fails, try another network.</div></div><div class="modal-foot"><span class="tiny muted" id="joinStatus">Ready to connect</span><button class="btn primary" id="joinBtn" onclick="joinOnline()">Connect →</button></div></div></div>
 <div class="screen hidden" id="inviteScreen"><div class="modal-card"><div class="modal-head"><div><h2>Invite your friends</h2><p>Send this link so another player can take control of a rival realm.</p></div><button class="icon-btn" onclick="closeScreen('inviteScreen')">×</button></div><div class="modal-body"><div class="field"><label>Shareable invite link</label><input id="inviteLink" readonly></div><div class="callout" style="margin-top:13px">Keep your host tab open. All players see the same world and can build, train and attack from their own realm.</div><div class="list" id="onlinePlayers" style="margin-top:12px"></div></div><div class="modal-foot"><span class="tiny muted" id="inviteStatus">Ready to share</span><button class="btn primary" onclick="copyInvite()">Copy link ↗</button></div></div></div>
 <div class="screen hidden" id="settingsScreen"><div class="modal-card"><div class="modal-head"><div><h2>Settings</h2><p>Configure visuals, pace, input and world rules.</p></div><button class="icon-btn" onclick="closeScreen('settingsScreen')">×</button></div><div class="modal-body"><div class="tabs" id="settingsTabs"><button class="tab active" onclick="settingsTab('display')">Display</button><button class="tab" onclick="settingsTab('world')">World</button><button class="tab" onclick="settingsTab('gameplay')">Gameplay</button><button class="tab" onclick="settingsTab('audio')">Audio</button><button class="tab" onclick="settingsTab('save')">Save</button></div><div id="settingsBody"></div></div><div class="modal-foot"><span class="tiny muted">Settings save automatically on this device.</span><button class="btn primary" onclick="closeScreen('settingsScreen')">Done</button></div></div></div>
@@ -172,6 +172,44 @@ function renderCanvasStart(){setWorldSize();drawWorld()}function startLoop(){sto
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 window.addEventListener('keydown',e=>{if(e.key==='Escape'){const screen=document.querySelector('.screen:not(.hidden)');if(screen){if(screen.id!=='welcomeScreen')closeScreen(screen.id);else if(app.started)closeScreen('welcomeScreen')}else openSettings()}if(!S||!app.started)return;if(e.key===' '){e.preventDefault();togglePause()}if(e.key.toLowerCase()==='b')setTab('build');if(e.key.toLowerCase()==='t')setTab('tech');if(e.key.toLowerCase()==='a')setTab('army')});
 function parseInvite(){try{const id=new URL(location.href).searchParams.get('join');if(id){$('joinInput').value=location.href;$('joinName').value=localPlayerName();showJoin();setTimeout(joinOnline,400)}}catch{}}
+// Bind the welcome-menu actions explicitly rather than relying on inline HTML handlers.
+const MENU_ACTIONS={
+  solo:()=>startSolo(),
+  host:()=>startOnlineHost(),
+  join:()=>showJoin(),
+  settings:()=>openSettings(),
+  load:()=>showLoad()
+};
+function runMenuAction(name){
+  const action=MENU_ACTIONS[name];
+  if(!action)return;
+  document.querySelectorAll('[data-menu-action]').forEach(b=>b.disabled=true);
+  try{
+    const result=action();
+    Promise.resolve(result).catch(err=>{
+      console.error('Civitas menu action failed:',err);
+      say('That action failed. Please reload the page and try again.','error');
+    }).finally(()=>document.querySelectorAll('[data-menu-action]').forEach(b=>b.disabled=false));
+  }catch(err){
+    console.error('Civitas menu action failed:',err);
+    say('That action failed. Please reload the page and try again.','error');
+    document.querySelectorAll('[data-menu-action]').forEach(b=>b.disabled=false);
+  }
+}
+document.querySelectorAll('[data-menu-action]').forEach(button=>{
+  button.addEventListener('click',event=>{
+    event.preventDefault();
+    runMenuAction(button.dataset.menuAction);
+  });
+});
+window.addEventListener('error',event=>{
+  console.error('Civitas runtime error:',event.error||event.message);
+  if(!app.started)say('A game script error occurred. Reload this page; if it continues, check the console for details.','error');
+});
+window.addEventListener('unhandledrejection',event=>{
+  console.error('Civitas async error:',event.reason);
+  if(!app.started)say('A game action could not finish. Check your connection and try again.','error');
+});
 applySettings();renderCanvasStart();parseInvite();
 // Small hooks are exposed for offline smoke tests and browser automation.
 window.__civitas={startSolo,makeWorld,renderAll,tickWorld,applyAction,get state(){return S},get app(){return app}};
